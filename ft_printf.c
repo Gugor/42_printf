@@ -11,27 +11,60 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+size_t ft_strlen(const char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+
+}
+
+int ft_is_strformat(const char first, const char second)
+{
+	char *set;
+
+	set = "csdpiuxX";
+	if (('%' == first) && ft_strchr(set, second))
+		return (1);
+	else
+		return (0);
+}
 
 int ft_num_formats(const char *format)
 {
-	char *set;
 	int count;
 	int len;
 
-	set = "csdpiuxX";
 	count = 0;
 	len = ft_strlen(format) - 1;
-	while (ft_strchr("%", format[len]) && ft_strchr(set, format[len + 1]) && len >= 0)
-		len++;		
-	return (len);
+	while (*(format + len))
+	{
+		if (ft_is_strformat(format[len], format[len + 1]) && len >= 0)
+		{
+			printf("current = %c next = %c (%i)\n", format[len], format[len + 1], len);
+			count++;		
+		}
+		len--;
+	}
+	return (count);
 }
 
 char *ft_vprintf(va_list args, char *format)
 {
 	//Cuantos %+algo existen en la str de formato
 	//Cuadran o no con el numero de argumentos ??	
-	int formats = ft_num_formats(format);
-	printf("%i\n",formats);
+	int i;
+	int num_formats;
+
+	num_formats = ft_num_formats(format);
+	while (i < num_formats)
+	{
+		ft_set_format(args, format);
+		i++;
+	} 	
 	return (NULL);
 }
 
@@ -40,7 +73,7 @@ char *ft_printf(const char *format, ...)
 	int num_args;
 	va_list args;
 	// Verify if num of arguments passed and num of placeholders set matches.
-	va_start(args,(char *)format);
+	va_start(args, format);
 	ft_vprintf(args, (char *)format);
 	va_end(args);
 	return (NULL);
@@ -48,5 +81,5 @@ char *ft_printf(const char *format, ...)
 
 int main(void)
 {
-	ft_printf("%s");
+	ft_printf("%s %d %c %j %d");
 }
