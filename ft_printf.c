@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 18:13:11 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/06/22 13:25:32 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/06/22 13:22:36 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/06/22 13:33:50 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef PRINTF_H
-# define PRINTF_H
-# include <stdio.h>
-# include <stdarg.h>
-# include "libft.a"
+#include "printf.h"
 
-char *ft_print(char *str, ...);
-#endif
+char *ft_printf(char *str, ...)
+{
+	int num_args;
+	va_list args;
+	// Verify if num of arguments passed and num of placeholders set matches.
+	num_args = ft_check_args();	
+	va_start(args,);
+
+	va_end(args);
+	return (NULL);
+}
