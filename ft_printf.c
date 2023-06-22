@@ -33,7 +33,7 @@ int ft_is_strformat(const char first, const char second)
 		return (0);
 }
 
-int ft_num_formats(const char *format)
+int ft_num_flags(const char *format)
 {
 	int count;
 	int len;
@@ -52,31 +52,36 @@ int ft_num_formats(const char *format)
 	return (count);
 }
 
-char *ft_vprintf(va_list args, char *format)
+char *ft_set_format(const char *format, args)
+{
+	return (NULL);
+}
+
+int *ft_vprintf(char *format, va_list args)
 {
 	//Cuantos %+algo existen en la str de formato
 	//Cuadran o no con el numero de argumentos ??	
 	int i;
 	int num_formats;
 
-	num_formats = ft_num_formats(format);
+	num_formats = ft_num_flags(format);
 	while (i < num_formats)
 	{
-		ft_set_format(args, format);
+		ft_set_format(format, args);
 		i++;
 	} 	
-	return (NULL);
+	return (0);
 }
 
-char *ft_printf(const char *format, ...)
+int  *ft_printf(const char *format, ...)
 {
 	int num_args;
 	va_list args;
 	// Verify if num of arguments passed and num of placeholders set matches.
 	va_start(args, format);
-	ft_vprintf(args, (char *)format);
+	ft_vprintf((char *)format, args);
 	va_end(args);
-	return (NULL);
+	return (0);
 }
 
 int main(void)
