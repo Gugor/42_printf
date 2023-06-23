@@ -18,4 +18,12 @@
 
 char *ft_print(const char *format, ...);
 char *ft_vprint(va_list args, char *format);
+char *ft_set_c(char *format, char *arg, char *fpos);
+char *ft_set_s(char *format, char *arg, char *fpos);
+char *ft_set_d(char *format, char *arg, char *fpos);
+char *ft_set_p(char *format, char *arg, char *fpos);
+char *ft_set_i(char *format, char *arg, char *fpos);
+char *ft_set_u(char *format, char *arg, char *fpos);
+char *ft_set_x(char *format, char *arg, char *fpos);
+char *ft_set_X(char *format, char *arg, char *fpos);
 #endif

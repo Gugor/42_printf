@@ -51,10 +51,43 @@ int ft_num_flags(const char *format)
 	}
 	return (count);
 }
-
-char *ft_set_format(const char *format, args)
+/*
+char **ft_get_flags(char *format, int num)
 {
-	return (NULL);
+	char **flags;
+	int len;
+
+	len = ft_strlen(format) - 1;
+	while (*(format + len))
+	{
+		if (ft_is_strformat(format[len], format[len + 1]) && len >=0)
+		{
+			
+		}
+	}
+}*/
+
+char *ft_set_format(const char *format, const char *arg)
+{
+	static char *fpos; // It seems a better idea transform it to int. To be able to iterate over it or pass it to substr.
+	char *tmp;
+	char *flag;
+
+	fpos = format;
+	tmp = format;
+	flag = fpos;
+	fpos = ft_strchr(format,"%");
+	tmp = ft_set_c(format, arg, fpos);
+	tmp = ft_set_s(format, arg, fpos);
+	tmp = ft_set_d(format, arg, fpos);
+	tmp = ft_set_p(format, arg, fpos);
+	tmp = ft_set_i(format, arg, fpos);
+	tmp = ft_set_u(format, arg, fpos);
+	tmp = ft_set_x(format, arg, fpos);
+	tmp = ft_set_X(format, arg, fpos);
+	if (!tmp)
+		return (format);
+	return (tmp);
 }
 
 int *ft_vprintf(char *format, va_list args)
@@ -67,7 +100,7 @@ int *ft_vprintf(char *format, va_list args)
 	num_formats = ft_num_flags(format);
 	while (i < num_formats)
 	{
-		ft_set_format(format, args);
+		ft_set_format(format,var_arg(args, double));
 		i++;
 	} 	
 	return (0);
