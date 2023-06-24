@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:22:36 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/06/22 19:00:28 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/06/24 18:58:22 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,73 +51,60 @@ int ft_num_flags(const char *format)
 	}
 	return (count);
 }
-/*
-char **ft_get_flags(char *format, int num)
-{
-	char **flags;
-	int len;
 
-	len = ft_strlen(format) - 1;
-	while (*(format + len))
-	{
-		if (ft_is_strformat(format[len], format[len + 1]) && len >=0)
-		{
-			
-		}
-	}
-}*/
+t_formater ft_format(t_formater formater, const char *format, int flagpos)
 
-char *ft_set_format(const char *format, const char *arg)
+char *ft_set_format(char *format, va_list *args)
 {
-	static char *fpos; // It seems a better idea transform it to int. To be able to iterate over it or pass it to substr.
+	static char *fpos; // It seems a better idea to transform it to int. To be able to iterate over it or pass it to substr.
 	char *tmp;
 	char *flag;
 
-	fpos = format;
-	tmp = format;
-	flag = fpos;
-	fpos = ft_strchr(format,"%");
-	tmp = ft_set_c(format, arg, fpos);
-	tmp = ft_set_s(format, arg, fpos);
-	tmp = ft_set_d(format, arg, fpos);
-	tmp = ft_set_p(format, arg, fpos);
-	tmp = ft_set_i(format, arg, fpos);
-	tmp = ft_set_u(format, arg, fpos);
-	tmp = ft_set_x(format, arg, fpos);
-	tmp = ft_set_X(format, arg, fpos);
+	fpos = (char *)format;
+	tmp = (char *)format;
+	flag = (char *)fpos;
+	fpos = ft_strchr(format,'%');
+	tmp = ft_set_c((char *)format, args, fpos);
+	//tmp = ft_set_s((char *)format, *args, fpos);
+	//tmp = ft_set_d(format, (double)arg, fpos);
+	//tmp = ft_set_p(format, (int)arg, fpos);
+	//tmp = ft_set_i(format, (int)arg, fpos);
+	//tmp = ft_set_u(format, (unsigned int)arg, fpos);
+	//tmp = ft_set_x(format, (int)arg, fpos);
+	//tmp = ft_set_X(format, (int)arg, fpos);
 	if (!tmp)
-		return (format);
+		return ((char *)format);
 	return (tmp);
-}
-
-int *ft_vprintf(char *format, va_list args)
-{
-	//Cuantos %+algo existen en la str de formato
-	//Cuadran o no con el numero de argumentos ??	
-	int i;
-	int num_formats;
-
-	num_formats = ft_num_flags(format);
-	while (i < num_formats)
-	{
-		ft_set_format(format,var_arg(args, double));
-		i++;
-	} 	
-	return (0);
 }
 
 int  *ft_printf(const char *format, ...)
 {
-	int num_args;
-	va_list args;
+	char	*result;
+	int		num_flags;
+	int		i;
+	va_list	args;
 	// Verify if num of arguments passed and num of placeholders set matches.
+	result = (char *)format;
 	va_start(args, format);
-	ft_vprintf((char *)format, args);
+	num_flags = ft_num_flags(format);
+	if (num_flags == 0)
+		return (0);
+	i = 0;
+	while (i < num_flags)
+	{
+		result = ft_set_format(result, &args);
+		if (MALLOC_STATE == -1)
+			return (-1);
+		i++;
+	} 	
 	va_end(args);
+	//print result
+	if (PRINT_STATE == -1)
+		return (-1);
 	return (0);
 }
-
+/*
 int main(void)
 {
-	ft_printf("%s %d %c %j %d");
-}
+	ft_printf("hola %s %d %c %j %d", a,b,c,d);
+}*/
