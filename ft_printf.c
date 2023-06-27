@@ -6,11 +6,12 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:22:36 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/06/24 18:58:22 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/06/27 18:17:54 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
 size_t ft_strlen(const char *s)
 {
 	int i;
@@ -52,19 +53,19 @@ int ft_num_flags(const char *format)
 	return (count);
 }
 
-t_formater ft_format(t_formater formater, const char *format, int flagpos)
+//t_formater ft_format(t_formater formater, const char *format, int flagpos)
 
 char *ft_set_format(char *format, va_list *args)
 {
-	static char *fpos; // It seems a better idea to transform it to int. To be able to iterate over it or pass it to substr.
+	static char *flagpos; // It seems a better idea to transform it to int. To be able to iterate over it or pass it to substr.
 	char *tmp;
 	char *flag;
 
-	fpos = (char *)format;
+	flagpos = (char *)format;
 	tmp = (char *)format;
-	flag = (char *)fpos;
-	fpos = ft_strchr(format,'%');
-	tmp = ft_set_c((char *)format, args, fpos);
+	flag = (char *)flagpos;
+	flagpos = ft_strchr(format,'%');
+	tmp = ft_set_c((char *)format, args, flagpos);
 	//tmp = ft_set_s((char *)format, *args, fpos);
 	//tmp = ft_set_d(format, (double)arg, fpos);
 	//tmp = ft_set_p(format, (int)arg, fpos);
@@ -72,8 +73,6 @@ char *ft_set_format(char *format, va_list *args)
 	//tmp = ft_set_u(format, (unsigned int)arg, fpos);
 	//tmp = ft_set_x(format, (int)arg, fpos);
 	//tmp = ft_set_X(format, (int)arg, fpos);
-	if (!tmp)
-		return ((char *)format);
 	return (tmp);
 }
 
@@ -93,14 +92,15 @@ int  *ft_printf(const char *format, ...)
 	while (i < num_flags)
 	{
 		result = ft_set_format(result, &args);
-		if (MALLOC_STATE == -1)
-			return (-1);
+		if (g_malloc_state == -1)
+			return ((int *)-1);
 		i++;
 	} 	
 	va_end(args);
+	printf("%s\n",result);
 	//print result
-	if (PRINT_STATE == -1)
-		return (-1);
+	if (g_write_state == -1)
+		return ((int *)-1);
 	return (0);
 }
 /*
