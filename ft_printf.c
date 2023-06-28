@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:22:36 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/06/27 18:17:54 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/06/28 18:47:13 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,25 @@ int ft_num_flags(const char *format)
 	return (count);
 }
 
-//t_formater ft_format(t_formater formater, const char *format, int flagpos)
-
 char *ft_set_format(char *format, va_list *args)
 {
-	static char *flagpos; // It seems a better idea to transform it to int. To be able to iterate over it or pass it to substr.
+	char *flagpos;
 	char *tmp;
-	char *flag;
+	char flag;
 
-	flagpos = (char *)format;
-	tmp = (char *)format;
-	flag = (char *)flagpos;
+	tmp = format;
 	flagpos = ft_strchr(format,'%');
-	tmp = ft_set_c((char *)format, args, flagpos);
-	//tmp = ft_set_s((char *)format, *args, fpos);
-	//tmp = ft_set_d(format, (double)arg, fpos);
-	//tmp = ft_set_p(format, (int)arg, fpos);
-	//tmp = ft_set_i(format, (int)arg, fpos);
-	//tmp = ft_set_u(format, (unsigned int)arg, fpos);
-	//tmp = ft_set_x(format, (int)arg, fpos);
-	//tmp = ft_set_X(format, (int)arg, fpos);
+	flag = *(flagpos + 1);
+	printf("Flag = %c\n", flag);
+	printf("Set flagpos %p\n", flagpos);
+	tmp = ft_set_c(tmp, args, flag, flagpos);
+	tmp = ft_set_s(tmp, args, flag,  flagpos);
+	//tmp = ft_set_d(tmp, args, flagpos);
+	//tmp = ft_set_p(tmp, args, flagpos);
+	//tmp = ft_set_i(tmp, args, flagpos);
+	//tmp = ft_set_u(tmp, args, flagpos);
+	//tmp = ft_set_x(tmp, args, flagpos);
+	//tmp = ft_set_X(tmp, args, flagpos);
 	return (tmp);
 }
 
@@ -82,25 +81,25 @@ int  *ft_printf(const char *format, ...)
 	int		num_flags;
 	int		i;
 	va_list	args;
-	// Verify if num of arguments passed and num of placeholders set matches.
+
 	result = (char *)format;
 	va_start(args, format);
 	num_flags = ft_num_flags(format);
-	if (num_flags == 0)
-		return (0);
+	g_state = 0;
 	i = 0;
 	while (i < num_flags)
 	{
+		printf("Flag num %i\n", i);
 		result = ft_set_format(result, &args);
-		if (g_malloc_state == -1)
+		printf("format in iter %i: %s \n", i, result);
+		if (g_state == -1 )
 			return ((int *)-1);
 		i++;
 	} 	
 	va_end(args);
-	printf("%s\n",result);
-	//print result
-	if (g_write_state == -1)
-		return ((int *)-1);
+	printf("%s",result);
+	if (result)
+		free(result);
 	return (0);
 }
 /*

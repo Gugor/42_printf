@@ -1,0 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_fill_format.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/28 15:43:49 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/06/28 15:57:14 by hmontoya         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+char *ft_fillformat(t_formater formater, char *addition, int lengthtoflag)
+{
+	//printf("Addition: %c\n",addition);
+    formater->previous = ft_substr(format, 0, lengthtoflag);
+    if (!formater->previous)
+    {
+        g_malloc_state = -1;
+        return (NULL);
+    }
+    //printf("previous = %s\n", formater.previous);
+    formater->reminder = ft_substr(format, lengthtoflag + 2, ft_strlen(format));
+    //printf("Reminder copied(%p): \"%s\"\n", formater.reminder, formater.reminder);
+    if (!formater->reminder)
+    {
+        g_malloc_state = -1;
+        return (NULL);
+    }
+    formater->result = ft_calloc(formater->formatlen - 2 + 1, sizeof(char));
+    //printf("Ready to cpy\n");
+    ft_strlcpy(formater->result, formater->previous, lengthtoflag + 1);
+    //printf("Copied(%p): %s\n", formater.result, formater.result);
+    ft_strlcat(formater->result, &addition, lengthtoflag + 1 + 1);
+    //printf("Concat(%p): %s\n", formater.result, formater.result);
+    ft_strlcat(formater->result, formater->reminder,formater->formatlen + 1);
+    if (formater->result)
+    {
+        free(formater->previous);
+        free(formater->reminder);
+    }
+	return (formater->result);
+}
