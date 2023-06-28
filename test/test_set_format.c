@@ -15,7 +15,6 @@
 int main(void)
 {
 	//Test 1: check length
-	
-	ft_printf("Hola %c %s .\n", 'c', "primo");
+	ft_printf("Hola %c %s-%i .\n", 'c', "primo", 10);
 	return (0);
 }

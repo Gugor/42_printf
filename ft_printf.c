@@ -65,8 +65,8 @@ char *ft_set_format(char *format, va_list *args)
 	printf("Flag = %c\n", flag);
 	printf("Set flagpos %p\n", flagpos);
 	tmp = ft_set_c(tmp, args, flag, flagpos);
-	tmp = ft_set_s(tmp, args, flag,  flagpos);
-	//tmp = ft_set_d(tmp, args, flagpos);
+	tmp = ft_set_s(tmp, args, flag, flagpos);
+	tmp = ft_set_d(tmp, args, flag, flagpos);
 	//tmp = ft_set_p(tmp, args, flagpos);
 	//tmp = ft_set_i(tmp, args, flagpos);
 	//tmp = ft_set_u(tmp, args, flagpos);

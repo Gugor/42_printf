@@ -33,7 +33,7 @@ char	*ft_set_format(char *format, va_list *args);
 char	*ft_fill_format(t_formater *formater, char *addition, int lengthtoflag);
 char	*ft_set_c(char *format, va_list *args, char flag, char *flagpos);
 char	*ft_set_s(char *format, va_list *args, char flag, char *flagpos);
-//char	*ft_set_d(char *format, va_list *args, char flag, char *fpos);
+char	*ft_set_d(char *format, va_list *args, char flag, char *flagpos);
 //char	*ft_set_p(char *format, int arg, char *fpos);
 //char	*ft_set_i(char *format, int arg, char *fpos);
 //char	*ft_set_u(char *format, unsigned int arg, char *fpos);
