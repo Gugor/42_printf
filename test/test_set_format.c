@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:10:10 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/06/28 18:33:24 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/06/29 19:03:40 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 int main(void)
 {
 	//Test 1: check length
-	ft_printf("Hola %c %s-%i .\n", 'c', "primo", 10);
+	//ft_printf("Hola %c %s-%d.... .\n", 'c', "primo", 1000);
+	//printf("\n............................................\n");
+	ft_printf("Perro%d %c %c %d", 1, 'a', 'a', 1000);
+	//printf("Perro%d %c %c %d", 1, 'a', 'a', 1000);
 	return (0);
 }
