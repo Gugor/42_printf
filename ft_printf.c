@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:22:36 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/06/29 19:04:29 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/01 18:52:38 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char *ft_set_format(char *format, va_list *args)
 	tmp = format;
 	flagpos = ft_strchr(format, '%');
 	flag = *(flagpos + 1);
-	printf("Flag = %c\n", flag);
+	printf("Flag = %c ()\n", flag);
 	printf("Set flagpos %p (%li)\n", flagpos, flagpos - format);
 	tmp = ft_set_c(tmp, args, flag, flagpos - format);
 	printf("format after c: %s\n", tmp);
@@ -70,11 +70,16 @@ char *ft_set_format(char *format, va_list *args)
 	printf("format after s: %s\n", tmp);
 	tmp = ft_set_d(tmp, args, flag, flagpos - format);
 	printf("format after d: %s\n", tmp);
-	//tmp = ft_set_p(tmp, args, flagpos);
-	//tmp = ft_set_i(tmp, args, flagpos);
-	//tmp = ft_set_u(tmp, args, flagpos);
-	//tmp = ft_set_x(tmp, args, flagpos);
-	//tmp = ft_set_X(tmp, args, flagpos);
+	tmp = ft_set_i(tmp, args, flag, flagpos - format);
+	printf("format after i: %s\n", tmp);
+	tmp = ft_set_u(tmp, args, flag, flagpos - format);
+	printf("format after u: %s\n", tmp);
+	tmp = ft_set_p(tmp, args, flag, flagpos - format);
+	printf("format after p: %s\n", tmp);
+	tmp = ft_set_x(tmp, args, flag, flagpos - format);
+	printf("format after x: %s\n", tmp);
+	tmp = ft_set_xx(tmp, args, flag, flagpos - format);
+	printf("format after X: %s\n", tmp);
 	return (tmp);
 }
 

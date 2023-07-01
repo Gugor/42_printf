@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:13:11 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/06/29 18:26:40 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/01 19:10:43 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ char	*ft_fill_format(t_formater *fmt, char *addition, int lengthtoflag);
 char	*ft_set_c(char *format, va_list *args, char flag, int flagpos);
 char	*ft_set_s(char *format, va_list *args, char flag, int flagpos);
 char	*ft_set_d(char *format, va_list *args, char flag, int flagpos);
-//char	*ft_set_p(char *format, int arg, char *fpos);
-//char	*ft_set_i(char *format, int arg, char *fpos);
-//char	*ft_set_u(char *format, unsigned int arg, char *fpos);
-//char	*ft_set_x(char *format, int arg, char *fpos);
+char	*ft_set_i(char *format, va_list *args, char flag, int flagpos);
+char	*ft_set_u(char *format, va_list *args, char flag, int flagpos);
+char	*ft_set_p(char *format, va_list *args, char flag, int flagpos);
+char	*ft_set_x(char *format, va_list *args, char flag, int flagpos);
+char	*ft_set_xx(char *format, va_list *args, char flag, int flagpos);
+char	*ft_gethex(unsigned int num);
 //char	*ft_set_X(char *format, int arg, char *fpos);
 #endif
