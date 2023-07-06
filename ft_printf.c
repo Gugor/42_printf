@@ -6,22 +6,11 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:22:36 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/01 18:52:38 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:50:34 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-
-size_t ft_strlen(const char *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-
-}
 
 int ft_is_strformat(const char first, const char second)
 {
@@ -44,46 +33,45 @@ int ft_num_flags(const char *format)
 	while (*(format + len))
 	{
 		if (ft_is_strformat(format[len], format[len + 1]) && len >= 0)
-		{
-			printf("current = %c next = %c (%i)\n", format[len], format[len + 1], len);
 			count++;		
-		}
 		len--;
 	}
 	return (count);
 }
 
-char *ft_set_format(char *format, va_list *args)
+static char *ft_strchr_pos(char *str, char c)
+{
+	char *flagpos;
+
+	flagpos = ft_strchr(str, c);
+	if (*str && ft_isformat(flagpos, *(flagpos + 1)))
+		return (flagpos);
+	else
+		ft_strchr_pos(*(str + (str - flapos)),c);
+}
+
+static char *ft_set_format(char *format, va_list *args)
 {
 	char *flagpos;
 	char *tmp;
 	char flag;
 
 	tmp = format;
-	flagpos = ft_strchr(format, '%');
+	flagpos = ft_strchr_pos(format, '%');
 	flag = *(flagpos + 1);
-	printf("Flag = %c ()\n", flag);
-	printf("Set flagpos %p (%li)\n", flagpos, flagpos - format);
 	tmp = ft_set_c(tmp, args, flag, flagpos - format);
-	printf("format after c: %s\n", tmp);
 	tmp = ft_set_s(tmp, args, flag, flagpos - format);
-	printf("format after s: %s\n", tmp);
 	tmp = ft_set_d(tmp, args, flag, flagpos - format);
-	printf("format after d: %s\n", tmp);
 	tmp = ft_set_i(tmp, args, flag, flagpos - format);
-	printf("format after i: %s\n", tmp);
 	tmp = ft_set_u(tmp, args, flag, flagpos - format);
-	printf("format after u: %s\n", tmp);
 	tmp = ft_set_p(tmp, args, flag, flagpos - format);
-	printf("format after p: %s\n", tmp);
 	tmp = ft_set_x(tmp, args, flag, flagpos - format);
-	printf("format after x: %s\n", tmp);
 	tmp = ft_set_xx(tmp, args, flag, flagpos - format);
-	printf("format after X: %s\n", tmp);
+	tmp = ft_set_per(tmp, args, flag, flagpos - format);
 	return (tmp);
 }
 
-int  *ft_printf(const char *format, ...)
+int  ft_printf(const char *format, ...)
 {
 	char	*result;
 	int		num_flags;
@@ -97,21 +85,14 @@ int  *ft_printf(const char *format, ...)
 	i = 0;
 	while (i < num_flags)
 	{
-		printf("Flag num %i\n", i);
 		result = ft_set_format(result, &args);
-		printf("format in iter %i: %s \n", i, result);
-		if (g_state == -1 )
-			return ((int *)-1);
+		if (g_state == - 1 )
+			break ;
 		i++;
 	} 	
 	va_end(args);
-	printf("**Result = %s",result);
+	i = ft_putstr_print(result);
 	if (result)
 		free(result);
-	return (0);
+	return (i);
 }
-/*
-int main(void)
-{
-	ft_printf("hola %s %d %c %j %d", a,b,c,d);
-}*/

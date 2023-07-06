@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:13:11 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/01 19:10:43 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:14:15 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_formater
 	int		addlen;
 } t_formater;
 
-int		*ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...);
 int		ft_num_flags(const char *format);
 int		ft_is_strformat(const char first, const char second);
 char	*ft_set_format(char *format, va_list *args);
@@ -39,6 +39,7 @@ char	*ft_set_u(char *format, va_list *args, char flag, int flagpos);
 char	*ft_set_p(char *format, va_list *args, char flag, int flagpos);
 char	*ft_set_x(char *format, va_list *args, char flag, int flagpos);
 char	*ft_set_xx(char *format, va_list *args, char flag, int flagpos);
-char	*ft_gethex(unsigned int num);
-//char	*ft_set_X(char *format, int arg, char *fpos);
+char	*ft_set_per(char *format, va_list *args, char flag, int flagpos);
+char	*ft_gethex(unsigned long num);
+int		ft_putstr_print(char *str);
 #endif

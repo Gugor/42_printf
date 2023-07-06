@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 17:10:10 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/01 19:32:42 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:33:40 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int main(void)
 	//ft_gethex(11897728);
 	int tmp;
 	tmp = -152345;
-	ft_printf("%p\n", &tmp);
-	printf("%p", &tmp);
+	ft_printf("This is a %% and this %x an hex, and this a simple character %c and \"%s\" and this a pointer (%p)", 1152921504585159826, 'c', "this is a string", &tmp );
 	return (0);
 }
