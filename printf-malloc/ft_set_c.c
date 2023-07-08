@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_print.c                                  :+:      :+:    :+:   */
+/*   ft_set_c.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 17:30:53 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/06 18:33:01 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/06/27 17:36:56 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/07/08 18:08:36 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-int ft_putstr_print(char *str)
+char *ft_set_c(char *format, va_list *args, char flag, int flagpos)
 {
-	int i;
-	int err;
+	t_formater fmt;
+	char *addition;
+	char tmp;
 
-	i = 0;
-	while (str[i])
-	{
-		err = write(1,&str[i],1);
-		if (err == - 1)
-		{
-			return (err);
-		}
-		i++;
-	}
-	return (i);
+	if (flag != 'c')
+		return (format);
+	fmt.format = format;
+	fmt.fmtlen = ft_strlen(format);
+	tmp = va_arg(*args, int);
+	addition = &tmp;
+	fmt.addlen = 1;
+	ft_fill_format(&fmt, addition, flagpos);
+	return (fmt.result);
 }

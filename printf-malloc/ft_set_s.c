@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_c.c                                         :+:      :+:    :+:   */
+/*   ft_set_s.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 17:36:56 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/08 19:53:13 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/06/28 18:31:06 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/07/06 18:25:12 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_set_c(char *format, va_list *args, char flag, int flagpos)
+char *ft_set_s(char *format, va_list *args, char flag, int flagpos)
 {
-	char arg;
+	t_formater fmt;
+	char *addition;
 
-	if (flag != 'c')
-		return (flagpos);
-	arg = va_arg(*args, int);
-		if (write(1, &arg, 1) == -1)
-			return (-1);
-	return (flagpos + 1);
+	if (flag != 's')
+		return (format);
+	fmt.format = format;	
+	fmt.fmtlen = ft_strlen(format);
+	addition = va_arg(*args, char *);
+	fmt.addlen = ft_strlen(addition);
+	ft_fill_format(&fmt, addition, flagpos);
+    return (fmt.result);
 }

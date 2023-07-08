@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_c.c                                         :+:      :+:    :+:   */
+/*   test_writef.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 17:36:56 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/08 19:53:13 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/07/08 19:21:47 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/07/08 19:56:48 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "../ft_printf.h"
 
-#include "ft_printf.h"
-
-int	ft_set_c(char *format, va_list *args, char flag, int flagpos)
+int main(void)
 {
-	char arg;
-
-	if (flag != 'c')
-		return (flagpos);
-	arg = va_arg(*args, int);
-		if (write(1, &arg, 1) == -1)
-			return (-1);
-	return (flagpos + 1);
+	//Test1
+	printf("Test %d \n", 1);
+	ft_printf("%c", '0');
 }

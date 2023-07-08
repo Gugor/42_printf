@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_c.c                                         :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 17:36:56 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/08 19:53:13 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/05/20 18:29:32 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/06/14 19:38:34 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_set_c(char *format, va_list *args, char flag, int flagpos)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	char arg;
+	size_t	i;
+	size_t	src_len;
 
-	if (flag != 'c')
-		return (flagpos);
-	arg = va_arg(*args, int);
-		if (write(1, &arg, 1) == -1)
-			return (-1);
-	return (flagpos + 1);
+	i = 0;
+	src_len = ft_strlen(src);
+	if (dstsize <= 0)
+		return (src_len);
+	while (i < src_len)
+	{
+		if (i < dstsize - 1)
+			dst[i] = (char)src[i];
+		i++;
+	}
+	if (src_len >= dstsize)
+		dst[dstsize - 1] = '\0';
+	else
+		dst[i] = '\0';
+	return (src_len);
 }

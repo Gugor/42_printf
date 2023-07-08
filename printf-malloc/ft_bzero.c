@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_c.c                                         :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 17:36:56 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/08 19:53:13 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/05/09 17:02:31 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/06/14 18:11:47 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_set_c(char *format, va_list *args, char flag, int flagpos)
+void	ft_bzero(void *s, size_t n)
 {
-	char arg;
+	size_t			i;
+	unsigned char	*b;
 
-	if (flag != 'c')
-		return (flagpos);
-	arg = va_arg(*args, int);
-		if (write(1, &arg, 1) == -1)
-			return (-1);
-	return (flagpos + 1);
+	i = 0;
+	b = (unsigned char *)s;
+	while (i < n)
+	{
+		b[i] = 0;
+		i++;
+	}
+	s = (void *) b;
 }

@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_c.c                                         :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 17:36:56 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/08 19:53:13 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/05/27 16:51:05 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/06/14 19:34:24 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_set_c(char *format, va_list *args, char flag, int flagpos)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char arg;
+	char	*newstr;
+	int		len1;
+	int		len2;
 
-	if (flag != 'c')
-		return (flagpos);
-	arg = va_arg(*args, int);
-		if (write(1, &arg, 1) == -1)
-			return (-1);
-	return (flagpos + 1);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	if (!s2)
+		return ((char *)s1);
+	newstr = (char *)ft_calloc(len1 + len2 + 1, sizeof(char));
+	if (!newstr)
+		return (NULL);
+	ft_strlcpy(newstr, (char *)s1, len1 + 1);
+	ft_strlcat(newstr, (char *)s2, len1 + len2 + 1);
+	return (newstr);
 }

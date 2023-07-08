@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:22:36 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/08 19:59:22 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:27:57 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,45 +39,59 @@ int ft_num_flags(const char *format)
 	return (count);
 }
 
-int ft_set_format(char *format, va_list *args)
+static char *ft_strchr_pos(char *str, char c)
 {
 	char *flagpos;
-	char flag;
-	int result;
 
+	flagpos = ft_strchr(str, c);
+	if (*str && !ft_is_strformat(*flagpos, *(flagpos + 1)))
+		flagpos = ft_strchr_pos(str + 1, c);
+		return (flagpos);	
+}
+
+char *ft_set_format(char *format, va_list *args)
+{
+	char *flagpos;
+	char *tmp;
+	char flag;
+
+	tmp = format;
+	flagpos = ft_strchr_pos(format, '%');
 	flag = *(flagpos + 1);
-	result = ft_set_c(format, args, flag, flagpos - format);
-	//ft_set_s(*format, args, flag, flagpos - format);
-	//ft_set_d(*format, args, flag, flagpos - format);
-	//ft_set_i(*format, args, flag, flagpos - format);
-	//ft_set_u(*format, args, flag, flagpos - format);
-	//ft_set_p(*format, args, flag, flagpos - format);
-	//ft_set_x(*format, args, flag, flagpos - format);
-	//ft_set_xx(*format, args, flag, flagpos - format);
-	//ft_set_per(tmp, flag, flagpos - format);
-	return (result);
+	tmp = ft_set_c(tmp, args, flag, flagpos - format);
+	tmp = ft_set_s(tmp, args, flag, flagpos - format);
+	tmp = ft_set_d(tmp, args, flag, flagpos - format);
+	tmp = ft_set_i(tmp, args, flag, flagpos - format);
+	tmp = ft_set_u(tmp, args, flag, flagpos - format);
+	tmp = ft_set_p(tmp, args, flag, flagpos - format);
+	tmp = ft_set_x(tmp, args, flag, flagpos - format);
+	tmp = ft_set_xx(tmp, args, flag, flagpos - format);
+	tmp = ft_set_per(tmp, flag, flagpos - format);
+	return (tmp);
 }
 
 int  ft_printf(const char *format, ...)
 {
-	va_list	args;
-	int		result;
+	char	*result;
 	int		num_flags;
 	int		i;
+	va_list	args;
 
-	result = 0;
-	i = 0;
+	result = (char *)format;
 	va_start(args, format);
-	while (*(format + i))
+	num_flags = ft_num_flags(format);
+	g_state = 0;
+	i = 0;
+	while (i < num_flags)
 	{
-		if (ft_is_strformat(*format, *(format + 1)))
-		{
-			result = ft_set_format((char *)format, &args);
-		}
-		if (write(1, format + i + result, 1))
-			return (-1);
+		result = ft_set_format(result, &args);
+		if (!result || g_state == - 1)
+			break ;
 		i++;
 	} 	
 	va_end(args);
+	i = ft_putstr_print(result);
+	if (result)
+		free(result);
 	return (i);
 }

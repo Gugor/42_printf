@@ -6,15 +6,15 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:44:26 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/06 17:27:03 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:36:04 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 static int ft_count_hex(unsigned long num)
 {
-	unsigned long count;
+	int count;
 
 	count = 0;
 	while (num > 0 && count < 12)
@@ -33,6 +33,8 @@ char *ft_gethex(unsigned long num)
 	int  count;
 	int module;
 
+	if (num == 0)
+		return (ft_strdup("0"));
 	set = "0123456789abcdef";
 	result = num;
 	module = 0;

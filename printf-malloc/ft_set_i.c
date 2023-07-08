@@ -1,46 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_xx.c                                        :+:      :+:    :+:   */
+/*   ft_set_i.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 17:34:35 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/06 17:24:32 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/07/01 14:58:23 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/07/08 18:05:42 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-static char *ft_hex_toupper(char *hex)
-{
-	while (*hex) 
-	{
-		if (*hex >= 'a' && *hex <= 'z')
-			*hex = ft_toupper(*hex);
-		hex++;
-	}
-	return (hex);
-
-}
-
-char *ft_set_xx(char *format, va_list *args, char flag, int flagpos)
-{
+char *ft_set_i(char *format, va_list *args, char flag, int flagpos)
+ {
      t_formater fmt;
      char *addition;
-     unsigned int tmp;
+     int tmp;
 
-     if (flag != 'X')
+     if (flag != 'i')
          return (format);
      fmt.format = format;
-     tmp = va_arg(*args, unsigned int);
-     addition = ft_gethex(tmp);
-     if (!addition)
-     {
-         g_state = - 1;
-         return (NULL);
-     }
-	 addition = ft_hex_toupper(addition);
+     tmp = va_arg(*args, int);
+     addition = ft_itoa(tmp);
      fmt.addlen = ft_strlen(addition);
      ft_fill_format(&fmt, addition, flagpos);
      return (fmt.result);

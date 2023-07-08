@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:13:11 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/06 18:14:15 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/08 16:21:14 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef PRINTF_H
 # define PRINTF_H
-# include <stdio.h>
+# include <unistd.h>
 # include <stdarg.h>
-# include "./libft/libft.h"
+# include "libft.h"
 int g_state;
 typedef struct s_formater 
 {
@@ -39,7 +39,7 @@ char	*ft_set_u(char *format, va_list *args, char flag, int flagpos);
 char	*ft_set_p(char *format, va_list *args, char flag, int flagpos);
 char	*ft_set_x(char *format, va_list *args, char flag, int flagpos);
 char	*ft_set_xx(char *format, va_list *args, char flag, int flagpos);
-char	*ft_set_per(char *format, va_list *args, char flag, int flagpos);
+char	*ft_set_per(char *format, char flag, int flagpos);
 char	*ft_gethex(unsigned long num);
 int		ft_putstr_print(char *str);
 #endif

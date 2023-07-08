@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_c.c                                         :+:      :+:    :+:   */
+/*   ft_set_per.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 17:36:56 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/08 19:53:13 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/07/06 17:49:41 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/07/08 13:51:54 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_set_c(char *format, va_list *args, char flag, int flagpos)
+char *ft_set_per(char *format, char flag, int flagpos)
 {
-	char arg;
+	t_formater fmt;
+	char *addition;
 
-	if (flag != 'c')
-		return (flagpos);
-	arg = va_arg(*args, int);
-		if (write(1, &arg, 1) == -1)
-			return (-1);
-	return (flagpos + 1);
+   	if (flag != '%')
+  		return (format);
+	fmt.format = format;
+  	addition = "%";
+ 	fmt.addlen = 1;
+	ft_fill_format(&fmt, addition, flagpos);
+	return (fmt.result);
 }

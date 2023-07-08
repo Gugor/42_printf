@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_s.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 18:31:06 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/06 18:25:12 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/05/25 16:42:41 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/06/14 19:29:16 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-char *ft_set_s(char *format, va_list *args, char flag, int flagpos)
+char	*ft_strdup(const char *s1)
 {
-	t_formater fmt;
-	char *addition;
+	size_t	i;
+	size_t	len;
+	char	*dup;
 
-	if (flag != 's')
-		return (format);
-	fmt.format = format;	
-	fmt.fmtlen = ft_strlen(format);
-	addition = va_arg(*args, char *);
-	fmt.addlen = ft_strlen(addition);
-	ft_fill_format(&fmt, addition, flagpos);
-    return (fmt.result);
+	i = 0;
+	len = ft_strlen(s1);
+	dup = (char *)malloc(len + 1 * sizeof(char));
+	if (!dup)
+		return (NULL);
+	while (s1[i])
+	{
+		dup[i] = (char)s1[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
 }
