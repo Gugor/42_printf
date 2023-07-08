@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 19:21:47 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/08 19:56:48 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/08 20:12:50 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../ft_printf.h"
@@ -15,5 +15,5 @@ int main(void)
 {
 	//Test1
 	printf("Test %d \n", 1);
-	ft_printf("%c", '0');
+	ft_printf("%c", 'n');
 }

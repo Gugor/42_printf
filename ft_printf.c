@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:22:36 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/08 19:59:22 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/08 20:44:31 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int ft_set_format(char *format, va_list *args)
 	char flag;
 	int result;
 
+	flagpos = format;
 	flag = *(flagpos + 1);
 	result = ft_set_c(format, args, flag, flagpos - format);
 	//ft_set_s(*format, args, flag, flagpos - format);
@@ -61,21 +62,24 @@ int ft_set_format(char *format, va_list *args)
 int  ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int		result;
 	int		num_flags;
 	int		i;
 
-	result = 0;
 	i = 0;
 	va_start(args, format);
-	while (*(format + i))
+	while (*(format))
 	{
-		if (ft_is_strformat(*format, *(format + 1)))
+		if (!ft_is_strformat(*format + i, *(format + 1)))
 		{
-			result = ft_set_format((char *)format, &args);
+			if (write(1, format, 1) == -1)
+				return (-1);
+			format++;
 		}
-		if (write(1, format + i + result, 1))
-			return (-1);
+		else
+		{
+			i += ft_set_format((char *)format, &args);
+			format += 2;
+		}
 		i++;
 	} 	
 	va_end(args);
