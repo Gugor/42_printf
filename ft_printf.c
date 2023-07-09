@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:22:36 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/08 20:44:31 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/09 18:55:40 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,18 @@ int ft_num_flags(const char *format)
 
 int ft_set_format(char *format, va_list *args)
 {
-	char *flagpos;
 	char flag;
 	int result;
 
-	flagpos = format;
-	flag = *(flagpos + 1);
-	result = ft_set_c(format, args, flag, flagpos - format);
-	//ft_set_s(*format, args, flag, flagpos - format);
-	//ft_set_d(*format, args, flag, flagpos - format);
-	//ft_set_i(*format, args, flag, flagpos - format);
-	//ft_set_u(*format, args, flag, flagpos - format);
-	//ft_set_p(*format, args, flag, flagpos - format);
-	//ft_set_x(*format, args, flag, flagpos - format);
-	//ft_set_xx(*format, args, flag, flagpos - format);
+	flag = *(format + 1);
+	result = ft_set_c(args, flag);
+	result = ft_set_s(args, flag);
+	result = ft_set_d(args, flag);
+	result = ft_set_i(args, flag);
+	//ft_set_u(format, args, flag, flagpos - format);
+	//ft_set_p(format, args, flag, flagpos - format);
+	//ft_set_x(format, args, flag, flagpos - format);
+	//ft_set_xx(format, args, flag, flagpos - format);
 	//ft_set_per(tmp, flag, flagpos - format);
 	return (result);
 }
@@ -69,7 +67,7 @@ int  ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (*(format))
 	{
-		if (!ft_is_strformat(*format + i, *(format + 1)))
+		if (!ft_is_strformat(*format, *(format + 1)))
 		{
 			if (write(1, format, 1) == -1)
 				return (-1);

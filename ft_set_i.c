@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_d.c                                         :+:      :+:    :+:   */
+/*   ft_set_i.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 12:54:06 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/08 18:05:24 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/07/01 14:58:23 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/07/09 18:53:10 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char *ft_set_d(char *format, va_list *args, char flag, int flagpos)
+int ft_set_i(va_list *args, char flag)
  {
-	 t_formater fmt;
-	 char *addition;
-	 int tmp;
+     char *arg;
+     int tmp;
+	 int i;
 
-     if (flag != 'd')
-         return (format);
-	 fmt.format = format;
+     if (flag != 'i')
+         return (0);
      tmp = va_arg(*args, int);
-	 addition = ft_itoa(tmp);
-     fmt.addlen = ft_strlen(addition);
-     ft_fill_format(&fmt, addition, flagpos);
-     return (fmt.result);
+     arg = ft_itoa(tmp);
+	 while (*(arg + i))
+	 {
+	 	if (write(1, arg + i, 1))
+			return (-1);
+		i++;
+	 }
+	 if (arg && tmp)
+		 free(arg);
+     return (i);
  }

@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_c.c                                         :+:      :+:    :+:   */
+/*   ft_set_d.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 17:36:56 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/09 18:51:00 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/06/29 12:54:06 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/07/09 18:53:32 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_set_c(va_list *args, char flag)
-{
-	char arg;
+int ft_set_d(va_list *args, char flag)
+ {
+	 char *arg;
+	 int tmp;
+	 int i;
 
-	if (flag != 'c')
-		return (0);
-	arg = va_arg(*args, int);
-	if (write(1, &arg, 1) == -1)
-		return (-1);
-	return (1);
-}
+     if (flag != 'd')
+         return (0);
+	 i = 0;
+     tmp = va_arg(*args, int);
+	 arg = ft_itoa(tmp);
+	 while (*(arg + i))
+	 {
+		if (write(1, arg + i, 1) == -1)
+			return (-1);
+		i++;
+	 }
+	 if(arg && tmp)
+		 free(arg);
+     return (i);
+ }

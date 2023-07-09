@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_s.c                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 18:31:06 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/06 18:25:12 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/05/24 20:32:52 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/07/09 16:46:41 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char *ft_set_s(char *format, va_list *args, char flag, int flagpos)
+void	*ft_calloc(size_t count, size_t size)
 {
-	t_formater fmt;
-	char *addition;
+	void	*ptr;
 
-	if (flag != 's')
-		return (format);
-	fmt.format = format;	
-	fmt.fmtlen = ft_strlen(format);
-	addition = va_arg(*args, char *);
-	fmt.addlen = ft_strlen(addition);
-	ft_fill_format(&fmt, addition, flagpos);
-    return (fmt.result);
+	ptr = (void *)malloc(count * size);
+	if (!ptr)
+		return (0);
+	ft_bzero(ptr, count * size);
+	return ((void *)ptr);
 }
