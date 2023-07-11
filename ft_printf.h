@@ -20,16 +20,16 @@
 int ft_printf(const char *format, ...);
 int	ft_num_flags(const char *format);
 int	ft_is_strformat(const char first, const char second);
-int	ft_set_format(char *format, va_list *args);
-int	ft_set_c(va_list *args, char flag);
-int	ft_set_s(va_list *args, char flag);
-int	ft_set_d(va_list *args, char flag);
-int	ft_set_i(va_list *args, char flag);
-//int	ft_set_u(char *format, va_list *args, char flag, int wpos);
-//int	ft_set_p(char *format, va_list *args, char flag, int wpos);
-//int	ft_set_x(char *format, va_list *args, char flag, int wpos);
-//int	ft_set_xx(char *format, va_list *args, char flag, int wpos);
-//int	ft_set_per(char *format, char flag, int wpos);
+int	ft_set_format(char *format, va_list args);
+int	ft_set_c(va_list args, char flag);
+int	ft_set_s(va_list args, char flag);
+int	ft_set_d(va_list args, char flag);
+int	ft_set_i(va_list args, char flag);
+int	ft_set_u(va_list args, char flag);
+//int	ft_set_p(va_list args, char flag);
+//int	ft_set_x(va_list args, char flag);
+//int	ft_set_xx(va_list args, char flag);
+//int	ft_set_per(char flag);
 //int	ft_gethex(unsigned long num);
 // + === Libft === + //
 char	*ft_strchr(const char *s, int c);

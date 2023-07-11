@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_s.c                                         :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 18:31:06 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/09 18:51:57 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/05/10 19:51:02 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/06/14 19:26:58 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int ft_set_s(va_list args, char flag)
+char	*ft_strchr(const char *s, int c)
 {
-	char *arg;
-	int i;
+	unsigned char	*str;
+	unsigned char	ch;
+	int				i;
 
-	if (flag != 's')
-		return (0);
+	str = (unsigned char *) s;
+	ch = (unsigned char) c;
 	i = 0;
-	arg = va_arg(args, char *);
-	if (!arg)
-		arg = "(null)";
-	while (*(arg + i))
+	while (str[i])
 	{
-		if (write(1, arg + i, 1) == -1)
-			return (-1);
+		if (str[i] == ch)
+			return ((char *)str + i);
 		i++;
 	}
-    return (i - 1);
+	if (ch == '\0')
+		return ((char *)str + i);
+	return (NULL);
 }

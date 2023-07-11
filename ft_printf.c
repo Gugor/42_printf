@@ -39,21 +39,22 @@ int ft_num_flags(const char *format)
 	return (count);
 }
 
-int ft_set_format(char *format, va_list *args)
+int ft_set_format(char *format, va_list args)
 {
 	char flag;
 	int result;
 
 	flag = *(format + 1);
-	result = ft_set_c(args, flag);
-	result = ft_set_s(args, flag);
-	result = ft_set_d(args, flag);
-	result = ft_set_i(args, flag);
-	//ft_set_u(format, args, flag, flagpos - format);
-	//ft_set_p(format, args, flag, flagpos - format);
-	//ft_set_x(format, args, flag, flagpos - format);
-	//ft_set_xx(format, args, flag, flagpos - format);
-	//ft_set_per(tmp, flag, flagpos - format);
+	result = 0;
+	result += ft_set_c(args, flag);
+	result += ft_set_s(args, flag);
+	result += ft_set_d(args, flag);
+	result += ft_set_i(args, flag);
+	result += ft_set_u(args, flag);
+	//ft_set_p(args, flag);
+	//ft_set_x(args, flag);
+	//ft_set_xx(args, flag);
+	//ft_set_per(flag);
 	return (result);
 }
 
@@ -62,6 +63,7 @@ int  ft_printf(const char *format, ...)
 	va_list	args;
 	int		num_flags;
 	int		i;
+	int		count;
 
 	i = 0;
 	va_start(args, format);
@@ -75,7 +77,10 @@ int  ft_printf(const char *format, ...)
 		}
 		else
 		{
-			i += ft_set_format((char *)format, &args);
+			count = ft_set_format((char *)format, args);
+			if (count == -1)
+				return (-1);
+			i += count;
 			format += 2;
 		}
 		i++;

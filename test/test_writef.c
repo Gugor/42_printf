@@ -104,7 +104,7 @@ int main(void)
 	//Test9
 	int t9_len = 0;
 	int t9_lenp = 0;
-	printf("\33[1;34mTest %d \33[1;0m\n", 8);
+	printf("\33[1;34mTest %d \33[1;0m\n", 9);
 	t9_len = ft_printf("This is a\0 empty string: \"%s\"", NULL);
 	printf("\n");
 	//t9_lenp = printf("This is a\0 string: \"%s\"", "I'm a string");
@@ -118,7 +118,7 @@ int main(void)
 	//Test10
 	int t10_len = 0;
 	int t10_lenp = 0;
-	printf("\33[1;34mTest %d \33[1;0m\n", 9);
+	printf("\33[1;34mTest %d \33[1;0m\n", 10);
 	t10_len = ft_printf("This is a digit:  \"%d\"", 123);
 	printf("\n");
 	t10_lenp = printf("This is a digit:  \"%d\"", 123);
@@ -128,7 +128,7 @@ int main(void)
 	//Test11
 	int t11_len = 0;
 	int t11_lenp = 0;
-	printf("\33[1;34mTest %d \33[1;0m\n", 9);
+	printf("\33[1;34mTest %d \33[1;0m\n", 11);
 	t11_len = ft_printf("This is a digit:  \"%d\", and %d this is a digit too", 123, 11);
 	printf("\n");
 	t11_lenp = printf("This is a digit:  \"%d\", and %d this is a digit too", 123, 11);
@@ -138,12 +138,36 @@ int main(void)
 	//Test12
 	int t12_len = 0;
 	int t12_lenp = 0;
-	printf("\33[1;34mTest %d \33[1;0m\n", 9);
+	printf("\33[1;34mTest %d \33[1;0m\n", 12);
 	t12_len = ft_printf("This is a digit:  \"%d\", and this is %d (zero) and  %d this is a digit too", 123, 0, 11);
 	printf("\n");
 	t12_lenp = printf("This is a digit:  \"%d\", and this is %d (zero) and  %d this is a digit too", 123, 0, 11);
 	printf("\nLength ft: %i\nLength:    %i", t12_len, t12_lenp);
 	printf("\n");
 	printf("\n");
+	printf("\n=====================================\n");
+	printf("+++ Tests %%u                          \n");
+	printf("=====================================\n\n");
+	//Test13
+	int t13_len = 0;
+	int t13_lenp = 0;
+	printf("\33[1;34mTest %d \33[1;0m\n", 13);
+	t13_len = ft_printf("This is a unsigned int:  %u", 234123490);
+	printf("\n");
+	t13_lenp = printf("This is a unsigned int:  %u", 234123490);
+	printf("\nLength ft: %i\nLength:    %i", t13_len, t13_lenp);
+	printf("\n");
+	printf("\n");
+	//Test14
+	int t14_len = 0;
+	int t14_lenp = 0;
+	printf("\33[1;34mTest %d \33[1;0m\n", 14);
+	t14_len = ft_printf("This is a unsigned int:  %u", -1234490);
+	printf("\n");
+	t14_lenp = printf("This is a unsigned int:  %u", -1234490);
+	printf("\nLength ft: %i\nLength:    %i", t14_len, t14_lenp);
+	printf("\n");
+	printf("\n");
+
 
 }

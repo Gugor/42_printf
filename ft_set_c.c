@@ -12,13 +12,13 @@
 
 #include "ft_printf.h"
 
-int	ft_set_c(va_list *args, char flag)
+int	ft_set_c(va_list args, char flag)
 {
 	char arg;
 
 	if (flag != 'c')
 		return (0);
-	arg = va_arg(*args, int);
+	arg = va_arg(args, int);
 	if (write(1, &arg, 1) == -1)
 		return (-1);
 	return (1);

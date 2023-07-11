@@ -6,28 +6,24 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 18:31:06 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/09 18:51:57 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:40:54 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
-int ft_set_s(va_list args, char flag)
+char *ft_set_s(char *format, va_list *args, char flag, int flagpos)
 {
-	char *arg;
-	int i;
+	t_formater fmt;
+	char *addition;
 
 	if (flag != 's')
-		return (0);
-	i = 0;
-	arg = va_arg(args, char *);
-	if (!arg)
-		arg = "(null)";
-	while (*(arg + i))
-	{
-		if (write(1, arg + i, 1) == -1)
-			return (-1);
-		i++;
-	}
-    return (i - 1);
+		return (format);
+	fmt.format = format;	
+	fmt.fmtlen = ft_strlen(format);
+	addition = va_arg(*args, char *);
+	fmt.addlen = ft_strlen(addition);
+	printf("Addition %s set.", addition);
+	ft_fill_format(&fmt, addition, flagpos);
+    return (fmt.result);
 }

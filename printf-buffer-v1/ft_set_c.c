@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_s.c                                         :+:      :+:    :+:   */
+/*   ft_set_c.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 18:31:06 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/09 18:51:57 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/06/27 17:36:56 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/06/29 17:47:34 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
-int ft_set_s(va_list args, char flag)
+char *ft_set_c(char *format, va_list *args, char flag, int flagpos)
 {
-	char *arg;
-	int i;
+	t_formater fmt;
+	char *addition;
+	char tmp;
 
-	if (flag != 's')
-		return (0);
-	i = 0;
-	arg = va_arg(args, char *);
-	if (!arg)
-		arg = "(null)";
-	while (*(arg + i))
-	{
-		if (write(1, arg + i, 1) == -1)
-			return (-1);
-		i++;
-	}
-    return (i - 1);
+	if (flag != 'c')
+		return (format);
+	fmt.format = format;
+	fmt.fmtlen = ft_strlen(format);
+	tmp = va_arg(*args, int);
+	addition = &tmp;
+	fmt.addlen = 1;
+	ft_fill_format(&fmt, addition, flagpos);
+	return (fmt.result);
 }
