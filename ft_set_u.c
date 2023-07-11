@@ -11,6 +11,39 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+static int  get_numsize(unsigned int num)
+ {
+     int size;
+     int n;
+
+     size = 0;
+     while (num > 0)
+     {
+         num /= 10;
+         size++;
+     }
+     return (size);
+ }
+
+static char *ft_utoa(unsigned int n)
+{
+	char    *num;
+    int     size;
+
+    size = 0;
+	if (n == 0)
+         return (ft_strdup("0"));
+	 size = get_numsize(n);
+     num = (char *)ft_calloc(size + 1, sizeof(char));
+     if (!num)
+         return (NULL);
+     while (size > 0)
+     {
+         num[--size] = n % 10 + 48;
+         n /= 10;
+     }
+     return (num);
+}
 
 int ft_set_u(va_list args, char flag)
  {
@@ -22,7 +55,8 @@ int ft_set_u(va_list args, char flag)
          return (0);
 	 i = 0;
      tmp = va_arg(args, unsigned int);
-     arg = ft_itoa(tmp);
+     arg = ft_utoa(tmp);
+	 printf("(%u) (%s)", tmp, arg);
 	 while (*(arg + i))
 	 {
 		 if (write(1, arg + i, 1) == -1)
