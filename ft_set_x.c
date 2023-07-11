@@ -14,32 +14,24 @@
 
 char *ft_set_x(char *format, va_list *args, char flag, int flagpos)
 {
-     t_formater fmt;
-     char *addition;
-     unsigned int tmp;
-	 char *result;
+     char			*arg;
+	 unsigned int	result;
+	 int			module;
 
      if (flag != 'x')
-         return (format);
-     fmt.format = format;
-     tmp = va_arg(*args, unsigned int);
-     addition = ft_gethex(tmp);
-	 if (!addition)
+         return (0);
+     arg = va_arg(*args, unsigned int);
+     arg = ft_gethex(tmp);
+	 if (!arg)
+		 return (-1);
+	 while (result > 0)
 	 {
-		 g_state = - 1;
-		 return (NULL);
+		 module = num % 16;
+         result /= 16;
+		if (write(1, module, 1) == -1)
+			return (-1);
 	 }
-     fmt.addlen = ft_strlen(addition);
-     ft_fill_format(&fmt, addition, flagpos);
-	 if (addition)
+	 if (arg)
 		 free(addition);
-	 result = ft_strdup(fmt.result);
-	 if (!result)
-	 {
-		g_state = - 1;
-		return (NULL);		
-	 }
-	 if (fmt.result)
-		 free(fmt.result);
-     return (result);
+     return (i - 1);
  }

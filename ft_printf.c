@@ -51,9 +51,9 @@ int ft_set_format(char *format, va_list args)
 	result += ft_set_d(args, flag);
 	result += ft_set_i(args, flag);
 	result += ft_set_u(args, flag);
-	//ft_set_p(args, flag);
-	//ft_set_x(args, flag);
+	result += ft_set_x(args, flag);
 	//ft_set_xx(args, flag);
+	//result += ft_set_p(args, flag);
 	//ft_set_per(flag);
 	return (result);
 }
