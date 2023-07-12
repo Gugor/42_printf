@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:13:11 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/09 18:49:49 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:29:32 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,10 @@ int	ft_set_s(va_list args, char flag);
 int	ft_set_d(va_list args, char flag);
 int	ft_set_i(va_list args, char flag);
 int	ft_set_u(va_list args, char flag);
-//int	ft_set_p(va_list args, char flag);
-//int	ft_set_x(va_list args, char flag);
-//int	ft_set_xx(va_list args, char flag);
-//int	ft_set_per(char flag);
-//int	ft_gethex(unsigned long num);
+int	ft_set_x(va_list args, char flag);
+int	ft_set_xx(va_list args, char flag);
+int	ft_set_p(va_list args, char flag);
+int	ft_set_per(char flag);
 // + === Libft === + //
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *str);

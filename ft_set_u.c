@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:04:26 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/08 18:08:29 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:08:24 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int ft_set_u(va_list args, char flag)
 	 i = 0;
      tmp = va_arg(args, unsigned int);
      arg = ft_utoa(tmp);
-	 printf("(%u) (%s)", tmp, arg);
 	 while (*(arg + i))
 	 {
 		 if (write(1, arg + i, 1) == -1)
@@ -65,5 +64,5 @@ int ft_set_u(va_list args, char flag)
 	 }
 	 if (arg)
 		 free(arg);
-     return (i - 1);
+     return (i);
  }

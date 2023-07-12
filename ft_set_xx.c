@@ -6,44 +6,38 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:34:35 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/08 18:11:01 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:51:43 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char *ft_hex_toupper(char *hex)
+static int ft_printHEX(unsigned int num, int count)
 {
-	while (*hex) 
-	{
-		if (*hex >= 'a' && *hex <= 'z')
-			*hex = ft_toupper(*hex);
-		hex++;
-	}
-	return (hex);
+    char *set;
+    int module;
 
+    set = "0123456789ABCDEF";
+    module = 0;
+    if (num > 0)
+    {
+        module = num % 16;
+        count = ft_printHEX(num /= 16, ++count);
+        if (write(1, set + module, 1) == -1)
+            return (-1);
+     }
+     return (count);
 }
 
-char *ft_set_xx(char *format, va_list *args, char flag, int flagpos)
+int ft_set_xx(va_list args, char flag)
 {
-     t_formater fmt;
-     char *addition;
-     unsigned int tmp;
+	int				arg;
+	unsigned int	i;
 
-     if (flag != 'X')
-         return (format);
-     fmt.format = format;
-     tmp = va_arg(*args, unsigned int);
-     addition = ft_gethex(tmp);
-     if (!addition)
-     {
-         g_state = - 1;
-         return (NULL);
-     }
-	 addition = ft_hex_toupper(addition);
-     fmt.addlen = ft_strlen(addition);
-     ft_fill_format(&fmt, addition, flagpos);
-	 if (addition)
-		 free(addition);
-     return (fmt.result);
+	if (flag != 'X')
+   		return (0);
+	i = 0;
+	arg = va_arg(args, unsigned int);
+	i = ft_printHEX(arg, i);
+	return (i);
  }

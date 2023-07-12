@@ -6,43 +6,46 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:18:35 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/08 18:06:20 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:15:42 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static char *ft_build_p_address(unsigned long num)
+static int ft_printlonghex(unsigned long num, int count)
 {
-	char *hex;
-	char *address;
+	char *set;
+    int module;
 
-	hex = ft_gethex(num);
-	if (!hex)
-		return (NULL);
-	address = ft_strjoin("0x", hex);
-	if (!address)
-	{
-		g_state = - 1;
-		return (NULL);
+    set = "0123456789abcdef";
+    module = 0;
+    if (num > 0)
+    {
+        module = num % 16;
+        count = ft_printlonghex(num /= 16, ++count);
+        if (write(1, set + module, 1) == -1)
+            return (-1);
 	}
-	return (address);
+	return (count);
 }
 
-char *ft_set_p(char *format, va_list *args, char flag, int flagpos)
+int ft_set_p(va_list args, char flag)
 {
-     t_formater fmt;
-     char *addition;
-     unsigned long tmp;
+     char *ptr;
+     unsigned long arg;
+	 int i;
 
      if (flag != 'p')
-         return (format);
-     fmt.format = format;
-     tmp = va_arg(*args, unsigned long);
-     addition = ft_build_p_address(tmp);
-     fmt.addlen = ft_strlen(addition);
-     ft_fill_format(&fmt, addition, flagpos);
-	 if (addition)
-		 free(addition);
-     return (fmt.result);
+         return (0);
+	 ptr = "0x";
+	 i = 0;
+	 while (*ptr)
+	 {
+	 	if (write(1, ptr, 1) == -1)
+			return (-1);
+		ptr++;
+		i++;
+	 }
+	 arg = va_arg(args, unsigned long); 
+	 i = ft_printlonghex(arg, i);
+     return (i);
  }

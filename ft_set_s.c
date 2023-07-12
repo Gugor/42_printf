@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 18:31:06 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/09 18:51:57 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:03:22 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ int ft_set_s(va_list args, char flag)
 			return (-1);
 		i++;
 	}
-    return (i - 1);
+    return (i);
 }
