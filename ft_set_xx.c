@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:34:35 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/12 16:51:43 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:22:29 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ int ft_set_xx(va_list args, char flag)
    		return (0);
 	i = 0;
 	arg = va_arg(args, unsigned int);
+	if (arg == 0)
+	{
+		if(write(1,"0",1) == -1)
+			return (-1);
+		else
+			return (1);
+	}
 	i = ft_printHEX(arg, i);
 	return (i);
  }

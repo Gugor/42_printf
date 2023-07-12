@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 19:21:47 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/12 17:50:13 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:30:10 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../ft_printf.h"
@@ -111,6 +111,16 @@ int main(void)
 	printf("\nLength ft: %i\nLength:    %i", t9_len, t9_lenp);
 	printf("\n");
 	printf("\n");
+	//Test9_1
+	int t9_1_len = 0;
+	int t9_1_lenp = 0;
+	printf("\33[1;34mTest %s \33[1;0m\n", "9_1");
+	t9_1_len = ft_printf(" %s", "");
+	printf("\n");
+	t9_1_lenp = ft_printf(" %s", "");
+	printf("\nLength ft: %i\nLength:    %i", t9_1_len, t9_1_lenp);
+	printf("\n");
+	printf("\n");
 	//%s Tests
 	printf("\n=====================================\n");
 	printf("+++ Tests %%d                          \n");
@@ -143,6 +153,16 @@ int main(void)
 	printf("\n");
 	t12_lenp = printf("This is a digit:  \"%d\", and this is %d (zero) and  %d this is a digit too", 123, 0, 11);
 	printf("\nLength ft: %i\nLength:    %i", t12_len, t12_lenp);
+	printf("\n");
+	printf("\n");
+	//Test12_1
+	int t12_1_len = 0;
+	int t12_1_lenp = 0;
+	printf("\33[1;34mTest %s \33[1;0m\n", "12_1");
+	t12_1_len = ft_printf("-1 =  %d ", -1);
+	printf("\n");
+	t12_1_len = printf("-1 =  %d ", -1);
+	printf("\nLength ft: %i\nLength:    %i", t12_1_len, t12_1_lenp);
 	printf("\n");
 	printf("\n");
 	printf("\n=====================================\n");
@@ -184,10 +204,10 @@ int main(void)
 	//Test15.1
 	int t15_1_len = 0;
 	int t15_1_lenp = 0;
-	printf("\33[1;34mTest %d \33[1;0m\n", 15);
-	t15_1_len = ft_printf("Hexadecimal of %d is %x", 1234, 1234);
+	printf("\33[1;34mTest %s \33[1;0m\n", "15_1");
+	t15_1_len = ft_printf(" %x ", 0);
 	printf("\n");
-	t15_1_lenp = printf("Hexadecimal of %d is %x", 1234, 1234);
+	t15_1_lenp = printf(" %x ", 0);
 	printf("\nLength ft: %i\nLength:    %i", t15_1_len, t15_1_lenp);
 	printf("\n");
 	printf("\n");
@@ -218,6 +238,16 @@ int main(void)
 	printf("\nLength ft: %i\nLength:    %i", t17_len, t17_lenp);
 	printf("\n");
 	printf("\n");
+	//Test17_1
+	int t17_1_len = 0;
+	int t17_1_lenp = 0;
+	printf("\33[1;34mTest %s \33[1;0m\n", "17_1");
+	t17_1_len = ft_printf(" %p %p", 0, 0);
+	printf("\n");
+	t17_1_len = ft_printf(" %p %p", 0, 0);
+	printf("\nLength ft: %i\nLength:    %i", t17_1_len, t17_1_lenp);
+	printf("\n");
+	printf("\n");
 	printf("\n=====================================\n");
 	printf("+++ Tests %%i                          \n");
 	printf("=====================================\n\n");
@@ -225,9 +255,13 @@ int main(void)
 	int t19_len = 0;
 	int t19_lenp = 0;
 	printf("\33[1;34mTest %d \33[1;0m\n", 19);
-	t19_len = ft_printf("This is a digit:  \"%d\"", 123);
+	//Test19
+	int t19_1_len = 0;
+	int t19_1_lenp = 0;
+	printf("\33[1;34mTest %s \33[1;0m\n", "19_1");
+	t19_1_len = ft_printf("This is a digit:  \"%d\"", 123);
 	printf("\n");
-	t19_lenp = printf("This is a digit:  \"%d\"", 123);
+	t19_1_lenp = printf("This is a digit:  \"%d\"", 123);
 	printf("\nLength ft: %i\nLength:    %i", t19_len, t19_lenp);
 	printf("\n");
 	printf("\n");

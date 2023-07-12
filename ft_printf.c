@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:22:36 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/12 18:03:30 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/12 19:28:48 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,12 @@ int ft_set_format(char *format, va_list args)
 	result += ft_set_u(args, flag);
 	result += ft_set_x(args, flag);
 	result += ft_set_xx(args, flag);
-	result += ft_set_p(args, flag);
 	result += ft_set_per(flag);
+	result += ft_set_p(args, flag);
+	if (result == -1)
+		return (-1);
+	if (result == -2)
+		return (-2);
 	return (result);
 }
 
@@ -64,7 +68,10 @@ int  ft_printf(const char *format, ...)
 			count = ft_set_format((char *)format, args);
 			if (count == -1)
 				return (-1);
-			i += count;
+			if (count == -2)
+				i = 0;
+			else 
+				i += count;
 			format += 2;
 		}
 	} 	
