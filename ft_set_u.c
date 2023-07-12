@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:04:26 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/12 16:08:24 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:08:55 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 static int  get_numsize(unsigned int num)
  {
      int size;
-     int n;
 
      size = 0;
      while (num > 0)

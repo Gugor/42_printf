@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:22:36 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/12 17:42:10 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:03:30 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int ft_set_format(char *format, va_list args)
 int  ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int		num_flags;
 	int		i;
 	int		count;
 
