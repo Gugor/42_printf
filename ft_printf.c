@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-int ft_is_strformat(const char first, const char second)
+int	ft_is_strformat(const char first, const char second)
 {
-	char *set;
+	char	*set;
 
 	set = "csdpiuxX%";
 	if (('%' == first) && ft_strchr(set, second))
@@ -23,10 +23,10 @@ int ft_is_strformat(const char first, const char second)
 		return (0);
 }
 
-int ft_set_format(char *format, va_list args)
+int	ft_set_format(char *format, va_list args)
 {
-	char flag;
-	int result;
+	char	flag;
+	int		result;
 
 	flag = *(format + 1);
 	result = 0;
@@ -46,7 +46,7 @@ int ft_set_format(char *format, va_list args)
 	return (result);
 }
 
-int  ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		i;
@@ -70,11 +70,11 @@ int  ft_printf(const char *format, ...)
 				return (-1);
 			if (count == -2)
 				i = 0;
-			else 
+			else
 				i += count;
 			format += 2;
 		}
-	} 	
+	}
 	va_end(args);
 	return (i);
 }

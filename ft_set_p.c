@@ -11,43 +11,48 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-static int ft_printlonghex(unsigned long num, int count)
-{
-	char *set;
-    int module;
 
-    set = "0123456789abcdef";
-    module = 0;
-    if (num > 0)
-    {
-        module = num % 16;
-        count = ft_printlonghex(num /= 16, ++count);
-        if (write(1, set + module, 1) == -1)
-            return (-1);
+static int	ft_printlonghex(unsigned long num, int count)
+{
+	char	*set;
+	int		module;
+
+	set = "0123456789abcdef";
+	module = 0;
+	if (num > 0)
+	{
+		module = num % 16;
+		count = ft_printlonghex(num / 16, ++count);
+		if (write(1, set + module, 1) == -1)
+			return (-1);
 	}
 	return (count);
 }
 
-int ft_set_p(va_list args, char flag)
+int	ft_set_p(va_list args, char flag)
 {
-     char *ptr;
-     unsigned long arg;
-	 int i;
+	char			*ptr;
+	unsigned long	arg;
+	int				i;
 
-     if (flag != 'p')
-         return (0);
-	 ptr = "0x";
-	 i = 0;
-	 while (*ptr)
-	 {
-	 	if (write(1, ptr, 1) == -1)
+	if (flag != 'p')
+		return (0);
+	ptr = "0x";
+	i = 0;
+	while (*ptr)
+	{
+		if (write(1, ptr, 1) == -1)
 			return (-1);
 		ptr++;
 		i++;
-	 }
-	 arg = va_arg(args, unsigned long); 
-	 if (arg == 0)
-		 return (-2);
-	 i = ft_printlonghex(arg, i);
-     return (i);
- }
+	}
+	arg = va_arg(args, unsigned long);
+	if (arg == 0)
+	{
+		if (write(1, "0", 1) == -1)
+			return (-1);
+		return (i + 1);
+	}
+	i = ft_printlonghex(arg, i);
+	return (i);
+}

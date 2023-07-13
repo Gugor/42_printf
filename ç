@@ -175,7 +175,7 @@ int main(void)
 	t12_2_len = ft_printf("%pp%p%p", (void *)LONG_MAX + 423856, (void *)0, (void
 *)INT_MAX);
 	printf("\n");
-	t12_2_lenp = printf("%pp%p%p", (void *)LONG_MAX + 423856, (void *)0, (void
+	t12_2_len = printf("%pp%p%p", (void *)LONG_MAX + 423856, (void *)0, (void
 *)INT_MAX);
 	printf("\nLength ft: %i\nLength:    %i", t12_2_len, t12_2_lenp);
 	printf("\n");
