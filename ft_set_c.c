@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:36:56 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/09 18:51:00 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/16 13:55:28 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_set_c(va_list args, char flag)
 {
-	char arg;
+	char	arg;
 
 	if (flag != 'c')
 		return (0);

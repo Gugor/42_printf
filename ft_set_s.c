@@ -6,16 +6,16 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 18:31:06 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/12 16:03:22 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/16 14:02:52 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_set_s(va_list args, char flag)
+int	ft_set_s(va_list args, char flag)
 {
-	char *arg;
-	int i;
+	char	*arg;
+	int		i;
 
 	if (flag != 's')
 		return (0);
@@ -29,5 +29,5 @@ int ft_set_s(va_list args, char flag)
 			return (-1);
 		i++;
 	}
-    return (i);
+	return (i);
 }

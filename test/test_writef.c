@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 19:21:47 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/12 19:30:10 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/16 12:38:42 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../ft_printf.h"
@@ -164,7 +164,7 @@ int main(void)
 	printf("\33[1;34mTest %s \33[1;0m\n", "12_1");
 	t12_1_len = ft_printf("-1 =  %d ", -1);
 	printf("\n");
-	t12_1_len = printf("-1 =  %d ", -1);
+t12_1_lenp  = printf("-1 =  %d ", -1);
 	printf("\nLength ft: %i\nLength:    %i", t12_1_len, t12_1_lenp);
 	printf("\n");
 	printf("\n");
@@ -178,6 +178,16 @@ int main(void)
 	t12_2_lenp = printf("%pp%p%p", (void *)LONG_MAX + 423856, (void *)0, (void
 *)INT_MAX);
 	printf("\nLength ft: %i\nLength:    %i", t12_2_len, t12_2_lenp);
+	printf("\n");
+	printf("\n");
+	//Test12_3
+	int t12_3_len = 0;
+	int t12_3_lenp = 0;
+	printf("\33[1;34mTest %s \33[1;0m\n", "12_3");
+	t12_1_len = ft_printf("%d", 0);
+	printf("\n");
+	t12_1_len = printf("%d", 0);
+	printf("\nLength ft: %i\nLength:    %i", t12_3_len, t12_3_lenp);
 	printf("\n");
 	printf("\n");
 	printf("\n=====================================\n");
