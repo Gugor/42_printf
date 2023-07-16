@@ -6,13 +6,15 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 19:21:47 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/16 12:38:42 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/16 17:35:31 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../ft_printf.h"
 
-long LONG_MAX = 9223372036854775807;
-long INT_MAX  = 2147483647;
+long	LONG_MAX = 9223372036854775807;
+long	LINT_MAX  = 2147483647;
+int		INT_MAX  = 2147483647;
+int		INT_MIN  = -2147483648;
 
 int main(void)
 {
@@ -173,10 +175,10 @@ t12_1_lenp  = printf("-1 =  %d ", -1);
 	int t12_2_lenp = 0;
 	printf("\33[1;34mTest %s \33[1;0m\n", "12_2");
 	t12_2_len = ft_printf("%pp%p%p", (void *)LONG_MAX + 423856, (void *)0, (void
-*)INT_MAX);
+*)LINT_MAX);
 	printf("\n");
 	t12_2_lenp = printf("%pp%p%p", (void *)LONG_MAX + 423856, (void *)0, (void
-*)INT_MAX);
+*)LINT_MAX);
 	printf("\nLength ft: %i\nLength:    %i", t12_2_len, t12_2_lenp);
 	printf("\n");
 	printf("\n");
@@ -213,6 +215,16 @@ t12_1_lenp  = printf("-1 =  %d ", -1);
 	printf("\nLength ft: %i\nLength:    %i", t14_len, t14_lenp);
 	printf("\n");
 	printf("\n");
+	//Test14_1
+	int t14_1_len = 0;
+	int t14_1_lenp = 0;
+	printf("\33[1;34mTest %s \33[1;0m\n", "14_1");
+	t14_1_len = ft_printf("%u", 0);
+	printf("\n");
+	t14_1_lenp = printf("%u", 0);
+	printf("\nLength ft: %i\nLength:    %i", t14_1_len, t14_1_lenp);
+	printf("\n");
+	printf("\n");
 	printf("\n=====================================\n");
 	printf("+++ Tests %%x                          \n");
 	printf("=====================================\n\n");
@@ -226,7 +238,7 @@ t12_1_lenp  = printf("-1 =  %d ", -1);
 	printf("\nLength ft: %i\nLength:    %i", t15_len, t15_lenp);
 	printf("\n");
 	printf("\n");
-	//Test15.1
+	//Test15_1
 	int t15_1_len = 0;
 	int t15_1_lenp = 0;
 	printf("\33[1;34mTest %s \33[1;0m\n", "15_1");
@@ -234,6 +246,36 @@ t12_1_lenp  = printf("-1 =  %d ", -1);
 	printf("\n");
 	t15_1_lenp = printf(" %x ", 0);
 	printf("\nLength ft: %i\nLength:    %i", t15_1_len, t15_1_lenp);
+	printf("\n");
+	printf("\n");
+	//Test15_2
+	int t15_2_len = 0;
+	int t15_2_lenp = 0;
+	printf("\33[1;34mTest %s \33[1;0m\n", "15_2");
+	t15_2_len = ft_printf("%x", INT_MAX);
+	printf("\n");
+	t15_2_lenp = printf("%x", INT_MAX);
+	printf("\nLength ft: %i\nLength:    %i", t15_2_len, t15_2_lenp);
+	printf("\n");
+	printf("\n");
+	//Test15_3
+	int t15_3_len = 0;
+	int t15_3_lenp = 0;
+	printf("\33[1;34mTest %s \33[1;0m\n", "15_3");
+	t15_3_len = ft_printf("%x", -10);
+	printf("\n");
+	t15_3_lenp = printf("%x", -10);
+	printf("\nLength ft: %i\nLength:    %i", t15_3_len, t15_3_lenp);
+	printf("\n");
+	printf("\n");
+	//Test15_4
+	int t15_4_len = 0;
+	int t15_4_lenp = 0;
+	printf("\33[1;34mTest %s \33[1;0m\n", "15_4");
+	t15_4_len = ft_printf("%x", -200000);
+	printf("\n");
+	t15_4_lenp = printf("%x", -200000);
+	printf("\nLength ft: %i\nLength:    %i", t15_4_len, t15_4_lenp);
 	printf("\n");
 	printf("\n");
 	printf("\n=====================================\n");

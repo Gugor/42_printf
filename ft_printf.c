@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:22:36 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/16 13:54:19 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/16 16:41:08 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	ft_print_format(char *format, va_list args, int i)
 			if (write(1, format, 1) == -1)
 				return (-1);
 			format++;
-			i += 1;
+			i++;
 		}
 		else
 		{
