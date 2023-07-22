@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:08:26 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/16 16:28:22 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:37:28 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	get_numsize_signed(int *num, int *neg)
 	}
 	n = *num;
 	if (n == 0)
-		return(++size);
+		return (++size);
 	while (n > 0)
 	{
 		n /= 10;

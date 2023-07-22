@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 12:54:06 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/16 17:39:41 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:40:55 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_set_d(va_list args, char flag)
 	char	*arg;
 	int		tmp;
 	int		i;
-	int rs;
 
 	if (flag != 'd')
 		return (0);
@@ -34,9 +33,8 @@ int	ft_set_d(va_list args, char flag)
 	if (!arg)
 		return (-1);
 	while (*(arg + i))
-	{ 
-		rs = write(1, arg + i, 1); 
-		if (rs == -1)
+	{
+		if (write(1, arg + i, 1) == -1)
 			return (ft_free_d(arg));
 		i++;
 	}

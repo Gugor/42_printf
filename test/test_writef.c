@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 19:21:47 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/16 17:35:31 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:47:06 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../ft_printf.h"
@@ -112,7 +112,7 @@ int main(void)
 	printf("\33[1;34mTest %d \33[1;0m\n", 9);
 	t9_len = ft_printf("This is a\0 empty string: \"%s\"", NULL);
 	printf("\n");
-	//t9_lenp = printf("This is a\0 string: \"%s\"", "I'm a string");
+	//t9_lenp = printf("This is a\0 empty string: \"%s\"", NULL);
 	printf("\nLength ft: %i\nLength:    %i", t9_len, t9_lenp);
 	printf("\n");
 	printf("\n");
@@ -276,6 +276,16 @@ t12_1_lenp  = printf("-1 =  %d ", -1);
 	printf("\n");
 	t15_4_lenp = printf("%x", -200000);
 	printf("\nLength ft: %i\nLength:    %i", t15_4_len, t15_4_lenp);
+	printf("\n");
+	printf("\n");
+	//Test15_5
+	int t15_5_len = 0;
+	int t15_5_lenp = 0;
+	printf("\33[1;34mTest %s \33[1;0m\n", "15_5");
+	t15_5_len = ft_printf("%x", -10);
+	printf("\n");
+	t15_5_lenp = printf("%x", -10);
+	printf("\nLength ft: %i\nLength:    %i", t15_5_len, t15_5_lenp);
 	printf("\n");
 	printf("\n");
 	printf("\n=====================================\n");

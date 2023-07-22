@@ -6,7 +6,7 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:04:26 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/16 17:41:20 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:42:09 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static char	*ft_utoa(unsigned int n)
 	return (num);
 }
 
-int  ft_free(char *arg)
+int	ft_free(char *arg)
 {
-    if (arg)
-        free(arg);
-    return (-1);
+	if (arg)
+		free(arg);
+	return (-1);
 }
 
 int	ft_set_u(va_list args, char flag)
