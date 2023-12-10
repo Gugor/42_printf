@@ -2,7 +2,7 @@
 `ft_printf` is a small replica of `printf` function in c. This is a proyect created for an assigment in 42 Barcelona school.
 
 # How to use it
-`ft_printf` is dependent of `libft` library. So you need to add in `libs/` folder the this library.
+`ft_printf` is dependent of <a href="https://github.com/Gugor/42_libft"> `libft`</a> library. So you need to add in `libs/` folder the this library.
 
 This could be a basic structure for you project:
 
