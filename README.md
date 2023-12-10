@@ -1,4 +1,4 @@
-#FT Printf
+# FT Printf
 `ft_printf` is a small replica of `printf` function in c. This is a proyect created for an assigment in 42 Barcelona school.
 
 # How to use it
