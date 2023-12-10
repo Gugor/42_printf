@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_print.c                                  :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 17:30:53 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/06 18:33:01 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/05/25 16:42:41 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/07/09 16:40:35 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "../../includes/ft_printf.h"
 
-int ft_putstr_print(char *str)
+char	*ft_strdup(const char *s1)
 {
-	int i;
-	int err;
+	size_t	i;
+	size_t	len;
+	char	*dup;
 
 	i = 0;
-	while (str[i])
+	len = ft_strlen(s1);
+	dup = (char *)malloc(len + 1 * sizeof(char));
+	if (!dup)
+		return (NULL);
+	while (s1[i])
 	{
-		err = write(1,&str[i],1);
-		if (err == - 1)
-		{
-			return (err);
-		}
+		dup[i] = (char)s1[i];
 		i++;
 	}
-	return (i);
+	dup[i] = '\0';
+	return (dup);
 }

@@ -14,32 +14,19 @@
 # define PRINTF_H
 # include <stdio.h>
 # include <stdarg.h>
-# include "./libft/libft.h"
-int g_state;
-typedef struct s_formater 
-{
-	char	*format;
-	char	*pref;
-	char	*suf;
-	char	*result;
-	int		fmtlen;
-	int		addlen;
-} t_formater;
+# include "../libft/libft.h"
 
 int		ft_printf(const char *format, ...);
 int		ft_num_flags(const char *format);
 int		ft_is_strformat(const char first, const char second);
-char	*ft_set_format(char *format, va_list *args);
-char	*ft_fill_format(t_formater *fmt, char *addition, int lengthtoflag);
-char	*ft_set_c(char *format, va_list *args, char flag, int flagpos);
-char	*ft_set_s(char *format, va_list *args, char flag, int flagpos);
-char	*ft_set_d(char *format, va_list *args, char flag, int flagpos);
-char	*ft_set_i(char *format, va_list *args, char flag, int flagpos);
-char	*ft_set_u(char *format, va_list *args, char flag, int flagpos);
-char	*ft_set_p(char *format, va_list *args, char flag, int flagpos);
-char	*ft_set_x(char *format, va_list *args, char flag, int flagpos);
-char	*ft_set_xx(char *format, va_list *args, char flag, int flagpos);
-char	*ft_set_per(char *format, va_list *args, char flag, int flagpos);
-char	*ft_gethex(unsigned long num);
-int		ft_putstr_print(char *str);
+int		ft_set_format(char *format, va_list args);
+int		ft_set_c(va_list args, char flag);
+int		ft_set_s(va_list args, char flag);
+int		ft_set_d(va_list args, char flag);
+int		ft_set_i(va_list args, char flag);
+int		ft_set_u(va_list args, char flag);
+int		ft_set_x(va_list args, char flag);
+int		ft_set_xx(va_list args, char flag);
+int		ft_set_p(va_list args, char flag);
+int		ft_set_per(char flag);
 #endif

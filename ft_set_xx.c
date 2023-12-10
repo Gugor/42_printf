@@ -6,42 +6,44 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 17:34:35 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/06 17:24:32 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:33:48 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "../../includes/ft_printf.h"
 
-static char *ft_hex_toupper(char *hex)
+static int	ft_printhex(unsigned int num, int count)
 {
-	while (*hex) 
-	{
-		if (*hex >= 'a' && *hex <= 'z')
-			*hex = ft_toupper(*hex);
-		hex++;
-	}
-	return (hex);
+	char	*set;
 
+	set = "0123456789ABCDEF";
+	if (num > 0)
+	{
+		count = ft_printhex(num / 16, ++count);
+		if (count == -1)
+			return (-1);
+		if (write(1, set + (num % 16), 1) == -1)
+			return (-1);
+	}
+	return (count);
 }
 
-char *ft_set_xx(char *format, va_list *args, char flag, int flagpos)
+int	ft_set_xx(va_list args, char flag)
 {
-     t_formater fmt;
-     char *addition;
-     unsigned int tmp;
+	int				arg;
+	unsigned int	i;
 
-     if (flag != 'X')
-         return (format);
-     fmt.format = format;
-     tmp = va_arg(*args, unsigned int);
-     addition = ft_gethex(tmp);
-     if (!addition)
-     {
-         g_state = - 1;
-         return (NULL);
-     }
-	 addition = ft_hex_toupper(addition);
-     fmt.addlen = ft_strlen(addition);
-     ft_fill_format(&fmt, addition, flagpos);
-     return (fmt.result);
- }
+	if (flag != 'X')
+		return (0);
+	i = 0;
+	arg = va_arg(args, unsigned int);
+	if (arg == 0)
+	{
+		if (write(1, "0", 1) == -1)
+			return (-1);
+		else
+			return (1);
+	}
+	i = ft_printhex(arg, i);
+	return (i);
+}

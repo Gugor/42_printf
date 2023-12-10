@@ -6,93 +6,83 @@
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 13:22:36 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/06 18:50:34 by hmontoya         ###   ########.fr       */
+/*   Updated: 2023/07/16 16:41:08 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "../../includes/ft_printf.h"
 
-int ft_is_strformat(const char first, const char second)
+int	ft_is_strformat(const char first, const char second)
 {
-	char *set;
+	char	*set;
 
-	set = "csdpiuxX";
+	set = "csdpiuxX%";
 	if (('%' == first) && ft_strchr(set, second))
 		return (1);
 	else
 		return (0);
 }
 
-int ft_num_flags(const char *format)
+int	ft_set_format(char *format, va_list args)
 {
-	int count;
-	int len;
+	char	flag;
+	int		result;
+
+	flag = *(format + 1);
+	result = 0;
+	result += ft_set_c(args, flag);
+	result += ft_set_s(args, flag);
+	result += ft_set_d(args, flag);
+	result += ft_set_i(args, flag);
+	result += ft_set_u(args, flag);
+	result += ft_set_x(args, flag);
+	result += ft_set_xx(args, flag);
+	result += ft_set_per(flag);
+	result += ft_set_p(args, flag);
+	if (result == -1)
+		return (-1);
+	if (result == -2)
+		return (-2);
+	return (result);
+}
+
+static int	ft_print_format(char *format, va_list args, int i)
+{
+	int		count;
 
 	count = 0;
-	len = ft_strlen(format) - 1;
-	while (*(format + len))
+	while (*format)
 	{
-		if (ft_is_strformat(format[len], format[len + 1]) && len >= 0)
-			count++;		
-		len--;
+		if (!ft_is_strformat(*format, *(format + 1)))
+		{
+			if (write(1, format, 1) == -1)
+				return (-1);
+			format++;
+			i++;
+		}
+		else
+		{
+			count = ft_set_format(format, args);
+			if (count == -1)
+				return (-1);
+			if (count == -2)
+				i = 0;
+			else
+				i += count;
+			format += 2;
+		}
 	}
-	return (count);
+	return (i);
 }
 
-static char *ft_strchr_pos(char *str, char c)
+int	ft_printf(const char *format, ...)
 {
-	char *flagpos;
-
-	flagpos = ft_strchr(str, c);
-	if (*str && ft_isformat(flagpos, *(flagpos + 1)))
-		return (flagpos);
-	else
-		ft_strchr_pos(*(str + (str - flapos)),c);
-}
-
-static char *ft_set_format(char *format, va_list *args)
-{
-	char *flagpos;
-	char *tmp;
-	char flag;
-
-	tmp = format;
-	flagpos = ft_strchr_pos(format, '%');
-	flag = *(flagpos + 1);
-	tmp = ft_set_c(tmp, args, flag, flagpos - format);
-	tmp = ft_set_s(tmp, args, flag, flagpos - format);
-	tmp = ft_set_d(tmp, args, flag, flagpos - format);
-	tmp = ft_set_i(tmp, args, flag, flagpos - format);
-	tmp = ft_set_u(tmp, args, flag, flagpos - format);
-	tmp = ft_set_p(tmp, args, flag, flagpos - format);
-	tmp = ft_set_x(tmp, args, flag, flagpos - format);
-	tmp = ft_set_xx(tmp, args, flag, flagpos - format);
-	tmp = ft_set_per(tmp, args, flag, flagpos - format);
-	return (tmp);
-}
-
-int  ft_printf(const char *format, ...)
-{
-	char	*result;
-	int		num_flags;
 	int		i;
 	va_list	args;
 
-	result = (char *)format;
-	va_start(args, format);
-	num_flags = ft_num_flags(format);
-	g_state = 0;
 	i = 0;
-	while (i < num_flags)
-	{
-		result = ft_set_format(result, &args);
-		if (g_state == - 1 )
-			break ;
-		i++;
-	} 	
+	va_start(args, format);
+	i = ft_print_format((char *)format, args, i);
 	va_end(args);
-	i = ft_putstr_print(result);
-	if (result)
-		free(result);
 	return (i);
 }

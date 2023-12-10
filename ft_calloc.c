@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set_c.c                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmontoya <hmontoya@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 17:36:56 by hmontoya          #+#    #+#             */
-/*   Updated: 2023/07/16 13:55:28 by hmontoya         ###   ########.fr       */
+/*   Created: 2023/05/24 20:32:52 by hmontoya          #+#    #+#             */
+/*   Updated: 2023/07/09 16:46:41 by hmontoya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
-int	ft_set_c(va_list args, char flag)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char	arg;
+	void	*ptr;
 
-	if (flag != 'c')
+	ptr = (void *)malloc(count * size);
+	if (!ptr)
 		return (0);
-	arg = va_arg(args, int);
-	if (write(1, &arg, 1) == -1)
-		return (-1);
-	return (1);
+	ft_bzero(ptr, count * size);
+	return ((void *)ptr);
 }
